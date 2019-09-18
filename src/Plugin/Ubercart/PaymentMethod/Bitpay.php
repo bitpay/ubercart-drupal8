@@ -58,23 +58,31 @@ class Bitpay extends PaymentMethodPluginBase {
   public function orderSave(OrderInterface $order) {
   
     error_log("BITPAY STUFF GOES HERE");
-  
+    error_log($_SERVER['REQUEST_URI']);
+
+    if($_SERVER['REQUEST_URI'] == '/cart/checkout/complete'){
+      header("Location: http://www.google.com/");
+      #invoice stuff goes here
+    }
+  /*
     if (empty($order->payment_details['description'])) {
-      #db_delete('uc_bitpaycheckout')
-     #   ->condition('order_id', $order->id())
-      #  ->execute();
-    # $order->payment_details['description'] = 'BitPay Checkout Order';
+      db_delete('uc_bitpaycheckout')
+        ->condition('order_id', $order->id())
+        ->execute();
+     $order->payment_details['description'] = 'BitPay Checkout Order';
     }
     else {
-     # db_merge('uc_bitpaycheckout')
-     #   ->key(array(
-     #     'order_id' => $order->id(),
-     #   ))
-     #   ->fields(array(
-     #     'description' => $order->payment_details['description'],
-     #   ))
-     #   ->execute();
+      db_merge('uc_bitpaycheckout')
+        ->key(array(
+          'order_id' => $order->id(),
+        ))
+        ->fields(array(
+          'description' => $order->payment_details['description'],
+        ))
+        ->execute();
     }
+*/
+
   }
 
 }
