@@ -1,0 +1,6 @@
+# Schema for the configuration files of the uc_bitpaycheckout module.
+
+payment_method.settings.bitpaycheckout:
+  type: mapping
+  label: 'Other method configuration settings'
+  mapping:
