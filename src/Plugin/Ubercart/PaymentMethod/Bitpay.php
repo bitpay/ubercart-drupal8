@@ -75,9 +75,9 @@ class Bitpay extends PaymentMethodPluginBase
 
         $http_host = $_SERVER['HTTP_HOST'];
         if ($this->isSecure()):
-          $http_host = 'https://'.$http_host;
+            $http_host = 'https://' . $http_host;
         else:
-          $http_host = 'http://'.$http_host;
+            $http_host = 'http://' . $http_host;
         endif;
 
         if ($_SERVER['REQUEST_URI'] == '/cart/checkout/complete' && strpos($_SERVER['HTTP_REFERER'], '/cart/checkout/review') != '') {
@@ -125,30 +125,33 @@ class Bitpay extends PaymentMethodPluginBase
             $invoiceData = json_decode($invoice->BPC_getInvoiceData());
             //now we have to append the invoice transaction id for the callback verification
             $invoiceID = $invoiceData->data->id;
-
+           
+            $this->logTransaction($invoiceID, $params->orderId);
+            
             #redirect
             header("Location: " . $invoice->BPC_getInvoiceURL());
             die();
 
         }
-        /*
-    if (empty($order->payment_details['description'])) {
-    db_delete('uc_bitpaycheckout')
-    ->condition('order_id', $order->id())
-    ->execute();
-    $order->payment_details['description'] = 'BitPay Checkout Order';
+
     }
-    else {
-    db_merge('uc_bitpaycheckout')
-    ->key(array(
-    'order_id' => $order->id(),
-    ))
-    ->fields(array(
-    'description' => $order->payment_details['description'],
-    ))
-    ->execute();
-    }
-     */
+    public function logTransaction($invoiceID, $orderId)
+    {
+        $table_name = '_bitpay_checkout_transactions';
+
+        $charset_collate = 'latin1_swedish_ci';
+        $sql = "CREATE TABLE IF NOT EXISTS $table_name(
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `order_id` int(11) NOT NULL,
+        `transaction_id` varchar(255) NOT NULL,
+        `transaction_status` varchar(50) NOT NULL DEFAULT 'new',
+        `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (`id`)
+        )";
+        $result = db_query($sql);
+
+        #insert into the db
+        $result = db_query("INSERT INTO $table_name (order_id,transaction_id) VALUES ('$orderId','$invoiceID')");
 
     }
 
