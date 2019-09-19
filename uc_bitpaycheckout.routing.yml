@@ -20,3 +20,12 @@ uc_bitpaycheckout.admin_settings_form:
     _permission: 'access administration pages'  
   options:  
     _admin_route: TRUE  
+
+
+uc_bitpaycheckout.bitpay_ipnrequest:
+  path: '/bitpayipn' 
+  defaults: 
+    _controller: '\Drupal\uc_bitpaycheckout\Controller\BitpayController::content' 
+    _title: 'Hello World'
+  requirements: 
+      _access: 'TRUE'

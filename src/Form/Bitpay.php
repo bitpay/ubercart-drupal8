@@ -79,4 +79,5 @@ class Bitpay extends FormBase {
 
     $form_state->setRedirect('entity.uc_order.canonical', ['uc_order' => $form_state->getValue('order_id')]);
   }
+
 }
