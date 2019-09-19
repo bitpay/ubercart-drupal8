@@ -108,6 +108,7 @@ class Bitpay extends PaymentMethodPluginBase
             $params->currency = $order_row->currency; //set as needed
 
             $params->redirectURL = $http_host . '/user/' . $order_row->uid . '/orders/' . $order_row->order_id;
+            $params->notificationURL = $http_host .'/bitpayipn';
 
             if ($order_row->primary_email != ''):
                 $buyerInfo = new \stdClass();
