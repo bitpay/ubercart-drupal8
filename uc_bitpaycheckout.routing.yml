@@ -26,6 +26,5 @@ uc_bitpaycheckout.bitpay_ipnrequest:
   path: '/bitpayipn' 
   defaults: 
     _controller: '\Drupal\uc_bitpaycheckout\Controller\BitpayController::content' 
-    _title: 'Hello World'
   requirements: 
       _access: 'TRUE'
