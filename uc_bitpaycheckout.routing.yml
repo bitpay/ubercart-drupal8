@@ -1,16 +1,3 @@
-uc_bitpaycheckout.check.receive:
-  path: '/admin/store/orders/{uc_order}/receive_check'
-  defaults:
-    _form: '\Drupal\uc_bitpaycheckout\Form\Bitpay'
-    _title: 'BitPay Checkout'
-  requirements:
-    _permission: 'view all orders'
-  options:
-    parameters:
-      uc_order:
-        type: entity:uc_order
-
-
 uc_bitpaycheckout.admin_settings_form:  
   path: '/admin/config/uc_bitpaycheckout/adminsettings'  
   defaults:  

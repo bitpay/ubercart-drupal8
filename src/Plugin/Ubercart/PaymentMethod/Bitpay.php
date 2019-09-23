@@ -13,7 +13,7 @@ use Drupal\uc_payment\PaymentMethodPluginBase;
  *
  * @UbercartPaymentMethod(
  *   id = "bitpaycheckout",
- *   name = @Translation("Bitpay"),
+ *   name = @Translation("BitPay"),
  * )
  */
 class Bitpay extends PaymentMethodPluginBase
