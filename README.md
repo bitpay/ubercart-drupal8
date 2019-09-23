@@ -42,7 +42,7 @@ Your site is now enabled.  Order status will automatically be updated from the I
 **BitPay Support:**
 
 * Last Cart Version Tested: Drupal 8.7.7
-* [GitHub Issues](https://github.com/bitpay/bitpay-checkout-for-woocommerce/issues)
+* [GitHub Issues](https://github.com/bitpay/ubercart-drupal8/issues)
   * Open an issue if you are having troubles with this plugin.
 * [Support](https://support.bitpay.com/hc/en-us)
   * BitPay merchant support documentation
