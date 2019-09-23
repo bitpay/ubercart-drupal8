@@ -51,15 +51,16 @@ class BitpayController extends ControllerBase
         $invoice = new BPC_Invoice($item);
        
         $orderStatus = json_decode($invoice->BPC_checkInvoiceStatus($invoiceID));
+        $timestamp = time();
         
 
         switch($orderStatus->data->status){
           case 'paid':
           $result = db_query("UPDATE {uc_orders} SET order_status = 'pending'  WHERE order_id = '" . $orderid . "'");
           
-          $comment = 'BitPay Invoice ID: <a target = "_blank" href = "' . $this->BPC_getBitPayDashboardLink($env, $invoiceID) . '">' . $invoiceID . '</a> is processing.';
+          $comment = 'BitPay Invoice ID: <a target = "_blank" href = "' . $this->BPC_getBitPayDashboardLink($env, $invoiceID) . '">' . $invoiceID . '</a> has been paid and will begin processing.';
 
-          $comment_sql = "INSERT INTO `uc_order_admin_comments` (`comment_id`, `order_id`, `uid`, `message`, `created`) VALUES (NULL, '$orderid', '0', '$comment', '0')";
+          $comment_sql = "INSERT INTO `uc_order_admin_comments` (`comment_id`, `order_id`, `uid`, `message`, `created`) VALUES (NULL, '$orderid', '0', '$comment', $timestamp)";
          
           $comment_result = db_query($comment_sql);
 
@@ -68,18 +69,18 @@ class BitpayController extends ControllerBase
           case 'confirmed':
           $result = db_query("UPDATE {uc_orders} SET order_status = 'processing'  WHERE order_id = '" . $orderid . "'");
           
-          $comment = 'BitPay Invoice ID: <a target = "_blank" href = "' . $this->BPC_getBitPayDashboardLink($env, $invoiceID) . '">' . $invoiceID . '</a> is processing.';
+          $comment = 'BitPay Invoice ID: <a target = "_blank" href = "' . $this->BPC_getBitPayDashboardLink($env, $invoiceID) . '">' . $invoiceID . '</a> has been confirmed.';
 
-          $comment_sql = "INSERT INTO `uc_order_admin_comments` (`comment_id`, `order_id`, `uid`, `message`, `created`) VALUES (NULL, '$orderid', '0', '$comment', '0')";
+          $comment_sql = "INSERT INTO `uc_order_admin_comments` (`comment_id`, `order_id`, `uid`, `message`, `created`) VALUES (NULL, '$orderid', '0', '$comment', $timestamp)";
          
           $comment_result = db_query($comment_sql);
           break;
           case 'expired':
           $result = db_query("UPDATE {uc_orders} SET order_status = 'canceled'  WHERE order_id = '" . $orderid . "'");
           
-          $comment = 'BitPay Invoice ID: <a target = "_blank" href = "' . $this->BPC_getBitPayDashboardLink($env, $invoiceID) . '">' . $invoiceID . '</a> is processing.';
+          $comment = 'BitPay Invoice ID: <a target = "_blank" href = "' . $this->BPC_getBitPayDashboardLink($env, $invoiceID) . '">' . $invoiceID . '</a> has been canceled.';
 
-          $comment_sql = "INSERT INTO `uc_order_admin_comments` (`comment_id`, `order_id`, `uid`, `message`, `created`) VALUES (NULL, '$orderid', '0', '$comment', '0')";
+          $comment_sql = "INSERT INTO `uc_order_admin_comments` (`comment_id`, `order_id`, `uid`, `message`, `created`) VALUES (NULL, '$orderid', '0', '$comment', $timestamp)";
          
           $comment_result = db_query($comment_sql);
 
@@ -87,9 +88,9 @@ class BitpayController extends ControllerBase
           case 'invalid':
           $result = db_query("UPDATE {uc_orders} SET order_status = 'canceled'  WHERE order_id = '" . $orderid . "'");
 
-          $coment = 'BitPay Invoice ID: <a target = "_blank" href = "' . $this->BPC_getBitPayDashboardLink($env, $invoiceID) . '">' . $invoiceID . '</a> is processing.';
+          $coment = 'BitPay Invoice ID: <a target = "_blank" href = "' . $this->BPC_getBitPayDashboardLink($env, $invoiceID) . '">' . $invoiceID . '</a> has become invalid.';
 
-           $comment_sql = "INSERT INTO `uc_order_admin_comments` (`comment_id`, `order_id`, `uid`, `message`, `created`) VALUES (NULL, '$orderid', '0', '$comment', '0')";
+           $comment_sql = "INSERT INTO `uc_order_admin_comments` (`comment_id`, `order_id`, `uid`, `message`, `created`) VALUES (NULL, '$orderid', '0', '$comment', $timestamp)";
          
           $comment_result = db_query($comment_sql);
           break;
