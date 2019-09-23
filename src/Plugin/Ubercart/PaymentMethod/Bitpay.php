@@ -70,7 +70,9 @@ class Bitpay extends PaymentMethodPluginBase
        
         global $base_url;  
 
-        if (strpos($_SERVER['REQUEST_URI'],'/cart/checkout/complete') != '' && strpos($_SERVER['HTTP_REFERER'], '/cart/checkout/review') != '') {
+
+
+        if (strpos($_SERVER['REQUEST_URI'],'/cart/checkout/complete') !==false && strpos($_SERVER['HTTP_REFERER'], '/cart/checkout/review') !==false) {
           
             $env_setting = \Drupal::config('bitpaycheckout.adminsettings')->get('bitpaycheckout_environment');
            
