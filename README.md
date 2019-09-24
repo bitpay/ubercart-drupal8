@@ -19,7 +19,7 @@ This plugin requires the following:
 
 Download the plugin via our [GitHub Repo](https://github.com/bitpay/ubercart-drupal8/releases).
 
-Upload to your `modules` folder into a `custom/contrib` directory.
+Upload to your `modules` folder into the `custom` or `contrib` directory.
 
 Log in to Drupal, and in the `Extend` section, search for `BitPay Checkout`.  Toggle the checkbox and click `Install`
 
@@ -51,7 +51,7 @@ Your site is now enabled.  Order status will automatically be updated from the I
 
 The latest version of this plugin can always be downloaded from the official BitPay repository located here: https://github.com/bitpay/ubercart-drupal8
 
-* This plugin requires PHP 5.6.40 or higher to function correctly. Contact your webhosting provider or server administrator if you are unsure which version is installed on your web server.
+* This plugin requires PHP 5.6.4 or higher to function correctly. Contact your webhosting provider or server administrator if you are unsure which version is installed on your web server.
 * Ensure a valid SSL certificate is installed on your server. Also ensure your root CA cert is updated. If your CA cert is not current, you will see curl SSL verification errors.
 * Verify that your web server is not blocking POSTs from servers it may not recognize. Double check this on your firewall as well, if one is being used.
 * Check the system error log file (usually the web server error log) for any errors during BitPay payment attempts. If you contact BitPay support, they will ask to see the log file to help diagnose the problem.
