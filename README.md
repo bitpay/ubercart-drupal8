@@ -17,7 +17,7 @@ This plugin requires the following:
 
 # Installation
 
-Downlopad the plugin via our [GitHub Repo](https://github.com/bitpay/ubercart-drupal8/releases).
+Download the plugin via our [GitHub Repo](https://github.com/bitpay/ubercart-drupal8/releases).
 
 Upload to your `modules` folder into a `custom/contrib` directory.
 
