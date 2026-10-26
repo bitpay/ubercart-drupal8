@@ -1,6 +1,13 @@
 BitPay Checkout for Ubercart
 ===============================
 
+> [!WARNING]
+> **This plugin is no longer supported.**
+>
+> BitPay does not maintain this plugin anymore. It will not get updates, bug fixes or security fixes. This repository will be archived and become read-only.
+>
+> If you use this plugin, please move to a supported BitPay integration. You can find the current list at https://developer.bitpay.com/docs/bitpay-integration-guide.
+
 ## Build Status
 
 [![Build Status](https://travis-ci.org/bitpay/ubercart-drupal8.svg?branch=master)](https://travis-ci.org/bitpay/ubercart-drupal8)
